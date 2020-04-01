@@ -29,6 +29,7 @@ class DialogDateTimePicker(
     private lateinit var utils: DatePickerUtils
     private lateinit var dialogBinding: DialogDateTimePickerBinding
     private var endDate: Calendar = Calendar.getInstance().also {
+        it.time = startDate.time
         it.add(Calendar.MONTH, maxMonthToDisplay)
     }
 

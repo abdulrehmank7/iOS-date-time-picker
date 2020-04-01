@@ -17,8 +17,10 @@ const val PM = "PM"
 
 class DatePickerUtils(private val startDate: Calendar, private val endDate: Calendar) {
 
-    private val selectedDateUnvalidated: Calendar = Calendar.getInstance()
-    val selectedDateTime: Calendar = Calendar.getInstance()
+    private val selectedDateUnvalidated: Calendar = Calendar.getInstance().also {
+        it.time = startDate.time
+    }
+    val selectedDateTime: Calendar = Calendar.getInstance().also { it.time = startDate.time }
     var currentSelectedHour = 0
     var isPmSelectedUnvalidated = false
 
