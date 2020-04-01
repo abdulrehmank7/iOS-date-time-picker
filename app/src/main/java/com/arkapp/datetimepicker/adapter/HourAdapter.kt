@@ -1,0 +1,46 @@
+package com.arkapp.datetimepicker.adapter
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
+import com.arkapp.datetimepicker.utils.DateViewHolder
+import com.arkapp.datetimepicker.R
+import com.arkapp.datetimepicker.utils.getZeroPrefix
+import java.util.*
+
+/**
+ * Created by Abdul Rehman on 12-03-2020.
+ * Contact email - abdulrehman0796@gmail.com
+ */
+class HourAdapter(val hour: ArrayList<Int>) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return DateViewHolder(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.recycler_date_seletion,
+                parent,
+                false
+            )
+        )
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val viewHolder = holder as DateViewHolder
+        if (hour[position] != -1)
+            viewHolder.binding.tv.text =
+                getZeroPrefix(hour[position])
+        else
+            viewHolder.binding.tv.text = ""
+    }
+
+
+    override fun getItemCount() = hour.size
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+}
