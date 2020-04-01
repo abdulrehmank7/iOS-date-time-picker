@@ -121,7 +121,7 @@ class DialogDateTimePicker(
         )
 
         dialogBinding.submitBtn.setOnClickListener {
-            dateTimeSelectedListener.onDateTimeSelected()
+            dateTimeSelectedListener.onDateTimeSelected(utils.selectedDateTime)
             dismiss()
         }
 

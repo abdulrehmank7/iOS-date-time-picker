@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         val startDate: Calendar = Calendar.getInstance()
         val dateTimeSelectedListener = object : OnDateTimeSelectedListener {
-            override fun onDateTimeSelected() {
+            override fun onDateTimeSelected(selectedDateTime: Calendar) {
             }
         }
 

@@ -56,13 +56,16 @@ fun getZeroPrefix(minute: Int): String {
 
 fun getFormattedHour(isPM: Boolean, hour: Int): Int {
     return if (isPM)
-        hour + 12
+        if (hour < 12)
+            hour + 12
+        else
+            0
     else
         hour
 }
 
 fun Context.getSmoothScroll(): LinearSmoothScroller {
-    val millisecondsPerInch = 100f; //default is 25f (bigger = slower)
+    val millisecondsPerInch = 100f //default is 25f (bigger = slower)
 
     return object : LinearSmoothScroller(this) {
         override fun getVerticalSnapPreference(): Int {

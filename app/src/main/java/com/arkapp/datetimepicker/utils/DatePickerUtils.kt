@@ -18,12 +18,12 @@ const val PM = "PM"
 class DatePickerUtils(private val startDate: Calendar, private val endDate: Calendar) {
 
     private val selectedDateUnvalidated: Calendar = Calendar.getInstance()
-    private val selectedDateTime: Calendar = Calendar.getInstance()
+    val selectedDateTime: Calendar = Calendar.getInstance()
     var currentSelectedHour = 0
     var isPmSelectedUnvalidated = false
 
     init {
-        isPmSelectedUnvalidated = startDate.get(Calendar.HOUR_OF_DAY) >= 12
+        isPmSelectedUnvalidated = startDate.get(Calendar.HOUR_OF_DAY) > 12
     }
 
     fun getAllDates(): ArrayList<Calendar> {
