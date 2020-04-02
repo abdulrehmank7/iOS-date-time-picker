@@ -1,6 +1,7 @@
 package com.arkapp.datetimepicker.utils
 
 import android.view.View
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 
@@ -19,18 +20,31 @@ class CustomSnapHelper(
 
     private var selectedPosition = -1
 
+    private var lastSelectedView: TextView? = null
+
     override fun findSnapView(layoutManager: RecyclerView.LayoutManager?): View? {
         val view = super.findSnapView(layoutManager)
 
         if (view != null) {
             val newPosition = layoutManager!!.getPosition(view)
             if (newPosition != selectedPosition && rv.scrollState == RecyclerView.SCROLL_STATE_IDLE) {
-                snapListener.onViewSnapped(newPosition)
                 selectedPosition = newPosition
+                snapListener.onViewSnapped(newPosition)
+
+                setFont(newPosition)
             }
         }
 
         return view
+    }
+
+    private fun setFont(newPosition: Int) {
+        if (lastSelectedView != null)
+        //Utility.setTypefaceMontserratMedium(rv.context, lastSelectedView)
+
+            lastSelectedView =
+                (rv.findViewHolderForAdapterPosition(newPosition) as DateViewHolder).binding.tv
+        //Utility.setTypefaceMontserratBold(rv.context, lastSelectedView)
     }
 
 

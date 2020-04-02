@@ -1,7 +1,6 @@
 package com.arkapp.datetimepicker.utils
 
 import androidx.recyclerview.widget.RecyclerView
-import com.arkapp.datetimepicker.adapter.HourAdapter
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
@@ -34,7 +33,7 @@ class DatePickerUtils(private val startDate: Calendar, private val endDate: Cale
         val calendarEndDate = Calendar.getInstance().also { it.time = endDate.time }
         val dates = ArrayList<Calendar>()
 
-        calendarStartDate.add(Calendar.DAY_OF_YEAR, -INVISIBLE_VIEWS)
+        calendarStartDate.add(Calendar.DAY_OF_YEAR, -(2 * INVISIBLE_VIEWS))
         calendarEndDate.add(Calendar.DAY_OF_YEAR, INVISIBLE_VIEWS)
 
         val totalDaysBetweenEnds =
@@ -110,62 +109,46 @@ class DatePickerUtils(private val startDate: Calendar, private val endDate: Cale
     }
 
 
-    fun resetDate(rv: RecyclerView, isSmoothScroll: Boolean) {
-        if (isSmoothScroll)
-            smoothScrollToTop(rv, 0)
+    private fun getInitHourIndex(): Int {
+        return if (startDate.get(Calendar.HOUR_OF_DAY) > 12)
+            startDate.get(Calendar.HOUR_OF_DAY) - 12
         else
-            rv.scrollToPositionTop(0)
+            startDate.get(Calendar.HOUR_OF_DAY)
     }
 
-    fun resetHour(rv: RecyclerView, isSmoothScroll: Boolean) {
-        val startHour =
-            if (startDate.get(Calendar.HOUR_OF_DAY) > 12)
-                startDate.get(Calendar.HOUR_OF_DAY) - 12
-            else
-                startDate.get(Calendar.HOUR_OF_DAY)
-
-
-        (rv.adapter as HourAdapter).hour.forEachIndexed { index, i ->
-            if (i == startHour) {
-                if (isSmoothScroll)
-                    smoothScrollToTop(
-                        rv,
-                        index - INVISIBLE_VIEWS
-                    )
-                else
-                    rv.scrollToPositionTop(index - INVISIBLE_VIEWS)
-            }
-        }
+    private fun getInitMinuteIndex(): Int {
+        return startDate.get(Calendar.MINUTE)
     }
 
-    fun resetMinute(rv: RecyclerView, isSmoothScroll: Boolean) {
-        if (isSmoothScroll)
-            smoothScrollToTop(
-                rv,
-                startDate.get(Calendar.MINUTE)
-            )
+    private fun getInitMeridiemIndex(): Int {
+        return if (startDate.get(Calendar.HOUR_OF_DAY) >= 12)
+            1
         else
-            rv.scrollToPositionTop(startDate.get(Calendar.MINUTE))
+            0
     }
 
-    fun resetMeridiem(rv: RecyclerView, isSmoothScroll: Boolean) {
-        if (startDate.get(Calendar.HOUR_OF_DAY) >= 12) {
-            if (isSmoothScroll)
-                smoothScrollToTop(rv, 1)
-            else
-                rv.scrollToPositionTop(1)
-        } else {
-            if (isSmoothScroll)
-                smoothScrollToTop(rv, 0)
-            else
-                rv.scrollToPositionTop(0)
-        }
+
+    fun resetDate(rv: RecyclerView, scrollSpeed: Float) {
+        smoothScrollToTop(rv, 2, scrollSpeed)
+    }
+
+    fun resetHour(rv: RecyclerView, scrollSpeed: Float) {
+        smoothScrollToTop(rv, getInitHourIndex(), scrollSpeed)
+    }
+
+    fun resetMinute(rv: RecyclerView, scrollSpeed: Float) {
+        println("minute index ${getInitMinuteIndex()}")
+        smoothScrollToTop(rv, getInitMinuteIndex(), scrollSpeed)
+    }
+
+    fun resetMeridiem(rv: RecyclerView, scrollSpeed: Float) {
+        smoothScrollToTop(rv, getInitMeridiemIndex(), scrollSpeed)
     }
 
 
     fun isValidDate(): Boolean {
-        println("SELECTED_DATE_BEFORE_VALIDATION ${selectedDateUnvalidated.time}")
-        println("START_DATE ${startDate.time}")
+        println("${startDate.time} START_DATE")
+        println("${selectedDateUnvalidated.time} SELECTED_DATE_BEFORE_VALIDATION ")
         return selectedDateUnvalidated.timeInMillis >= startDate.timeInMillis
     }
 }

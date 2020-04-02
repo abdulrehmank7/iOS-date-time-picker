@@ -29,14 +29,12 @@ class DialogDateTimePicker(
     private lateinit var utils: DatePickerUtils
     private lateinit var dialogBinding: DialogDateTimePickerBinding
     private var endDate: Calendar = Calendar.getInstance().also {
-        it.time = startDate.time
+        it.timeInMillis = startDate.timeInMillis
         it.add(Calendar.MONTH, maxMonthToDisplay)
     }
 
     init {
-        setOnShowListener {
-            initDates(false)
-        }
+        setOnShowListener { initDates(FAST_SPEED) }
     }
 
     @SuppressLint("SetTextI18n")
@@ -48,10 +46,10 @@ class DialogDateTimePicker(
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(dialogBinding.root)
 
-        utils = DatePickerUtils(startDate, endDate)
-
         window?.setTransparentEdges()
         window?.setFullWidth()
+
+        utils = DatePickerUtils(startDate, endDate)
 
         val dateAdapter = DateAdapter(utils.getAllDates())
         val hourAdapter = HourAdapter(utils.addEmptyValue(utils.getHours(false)))
@@ -104,22 +102,10 @@ class DialogDateTimePicker(
             }
         }
 
-        CustomSnapHelper(
-            dialogBinding.dateRv,
-            dateSnapListener
-        )
-        CustomSnapHelper(
-            dialogBinding.hourRv,
-            hourSnapListener
-        )
-        CustomSnapHelper(
-            dialogBinding.minuteRv,
-            minuteSnapListener
-        )
-        CustomSnapHelper(
-            dialogBinding.meridiemRv,
-            meridiemSnapListener
-        )
+        CustomSnapHelper(dialogBinding.dateRv, dateSnapListener)
+        CustomSnapHelper(dialogBinding.hourRv, hourSnapListener)
+        CustomSnapHelper(dialogBinding.minuteRv, minuteSnapListener)
+        CustomSnapHelper(dialogBinding.meridiemRv, meridiemSnapListener)
 
         dialogBinding.submitBtn.setOnClickListener {
             dateTimeSelectedListener.onDateTimeSelected(utils.selectedDateTime)
@@ -129,12 +115,13 @@ class DialogDateTimePicker(
         dialogBinding.cancelBtn.setOnClickListener { dismiss() }
     }
 
-    private fun initDates(isSmoothScroll: Boolean) {
-        utils.resetDate(dialogBinding.dateRv, isSmoothScroll)
-        utils.resetMeridiem(dialogBinding.meridiemRv, isSmoothScroll)
-        utils.resetHour(dialogBinding.hourRv, isSmoothScroll)
-        utils.resetMinute(dialogBinding.minuteRv, isSmoothScroll)
+    private fun initDates(scrollSpeed: Float) {
+        utils.resetDate(dialogBinding.dateRv, scrollSpeed)
+        utils.resetMeridiem(dialogBinding.meridiemRv, scrollSpeed)
+        utils.resetHour(dialogBinding.hourRv, scrollSpeed)
+        utils.resetMinute(dialogBinding.minuteRv, scrollSpeed)
     }
+
 
     private fun isStoppedScrolling(): Boolean {
         return dialogBinding.dateRv.scrollState == RecyclerView.SCROLL_STATE_IDLE &&
@@ -148,7 +135,7 @@ class DialogDateTimePicker(
             if (utils.isValidDate())
                 utils.setSelectedDateTime()
             else
-                initDates(true)
+                initDates(SLOW_SPEED)
         }
     }
 

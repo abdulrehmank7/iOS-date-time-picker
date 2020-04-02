@@ -36,15 +36,12 @@ fun RecyclerView.initVerticalAdapter(
     this.adapter = adapter
 }
 
+const val SLOW_SPEED = 100F
+const val FAST_SPEED = 25F
+
 @SuppressLint("SimpleDateFormat")
 fun getDateFromCalendar(calendar: Calendar): String {
     val sdf = SimpleDateFormat("EEE dd MMM")
-    return sdf.format(calendar.time)
-}
-
-@SuppressLint("SimpleDateFormat")
-fun getDate(calendar: Calendar): String {
-    val sdf = SimpleDateFormat("dd MM yyyy hh mm a")
     return sdf.format(calendar.time)
 }
 
@@ -59,13 +56,16 @@ fun getFormattedHour(isPM: Boolean, hour: Int): Int {
         if (hour < 12)
             hour + 12
         else
-            0
+            12
     else
-        hour
+        if (hour == 12)
+            return 0
+        else
+            hour
 }
 
-fun Context.getSmoothScroll(): LinearSmoothScroller {
-    val millisecondsPerInch = 100f //default is 25f (bigger = slower)
+fun Context.getSmoothScroll(millisecondsPerInch: Float): LinearSmoothScroller {
+    //val millisecondsPerInch = 100f; //default is 25f (bigger = slower)
 
     return object : LinearSmoothScroller(this) {
         override fun getVerticalSnapPreference(): Int {
@@ -83,9 +83,9 @@ fun RecyclerView.scrollToPositionTop(position: Int) {
     (layoutManager as LinearLayoutManager).scrollToPositionWithOffset(position, 0)
 }
 
-fun smoothScrollToTop(rv: RecyclerView, position: Int) {
+fun smoothScrollToTop(rv: RecyclerView, position: Int, speed: Float) {
     val layoutManager = rv.layoutManager as LinearLayoutManager
-    val smoothScroller = rv.context.getSmoothScroll()
+    val smoothScroller = rv.context.getSmoothScroll(speed)
     smoothScroller.targetPosition = position
     layoutManager.startSmoothScroll(smoothScroller)
 }
