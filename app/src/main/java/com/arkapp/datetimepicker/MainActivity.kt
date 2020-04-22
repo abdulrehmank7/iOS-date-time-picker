@@ -13,15 +13,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val startDate: Calendar = Calendar.getInstance()
-        val dateTimeSelectedListener = object : OnDateTimeSelectedListener {
-            override fun onDateTimeSelected(selectedDateTime: Calendar) {
-            }
-        }
-
-        val dialog = DialogDateTimePicker(this, startDate, 12, dateTimeSelectedListener)
-
         showDateTimePicker.setOnClickListener {
+
+            val startDate: Calendar = Calendar.getInstance().also {
+                it.set(Calendar.DAY_OF_MONTH, 21)
+                it.set(Calendar.HOUR_OF_DAY, 13)
+                it.set(Calendar.MINUTE, 0)
+            }
+            val dateTimeSelectedListener = object : OnDateTimeSelectedListener {
+                override fun onDateTimeSelected(selectedDateTime: Calendar) {
+                    println("Selected date $selectedDateTime")
+                }
+            }
+
+            val dialog = DialogDateTimePicker(
+                this,
+                startDate,
+                12,
+                dateTimeSelectedListener,
+                "Select date and time"
+            )
+
             dialog.show()
         }
     }

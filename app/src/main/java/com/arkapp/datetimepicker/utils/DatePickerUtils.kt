@@ -78,6 +78,7 @@ class DatePickerUtils(private val startDate: Calendar, private val endDate: Cale
     fun addEmptyValue(list: ArrayList<Int>): ArrayList<Int> {
         list.add(0, -1)
         list.add(1, -1)
+        list.add(2, -1)
         list.add(-1)
         list.add(-1)
         return list
@@ -101,6 +102,7 @@ class DatePickerUtils(private val startDate: Calendar, private val endDate: Cale
     }
 
     fun setSelectedHour(hour: Int) {
+        println("hour selected $hour")
         selectedDateUnvalidated.set(Calendar.HOUR_OF_DAY, hour)
     }
 
@@ -117,7 +119,7 @@ class DatePickerUtils(private val startDate: Calendar, private val endDate: Cale
     }
 
     private fun getInitMinuteIndex(): Int {
-        return startDate.get(Calendar.MINUTE)
+        return startDate.get(Calendar.MINUTE) + 1
     }
 
     private fun getInitMeridiemIndex(): Int {
@@ -133,12 +135,15 @@ class DatePickerUtils(private val startDate: Calendar, private val endDate: Cale
     }
 
     fun resetHour(rv: RecyclerView, scrollSpeed: Float) {
-        smoothScrollToTop(rv, getInitHourIndex(), scrollSpeed)
+        val index = getInitHourIndex()
+        println("hour index $index")
+        smoothScrollToTop(rv, index, scrollSpeed)
     }
 
     fun resetMinute(rv: RecyclerView, scrollSpeed: Float) {
-        println("minute index ${getInitMinuteIndex()}")
-        smoothScrollToTop(rv, getInitMinuteIndex(), scrollSpeed)
+        val index = getInitMinuteIndex()
+        println("minute index $index")
+        smoothScrollToTop(rv, index, scrollSpeed)
     }
 
     fun resetMeridiem(rv: RecyclerView, scrollSpeed: Float) {

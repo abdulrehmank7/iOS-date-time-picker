@@ -23,7 +23,8 @@ class DialogDateTimePicker(
     context: Context,
     private val startDate: Calendar,
     private val maxMonthToDisplay: Int,
-    private val dateTimeSelectedListener: OnDateTimeSelectedListener
+    private val dateTimeSelectedListener: OnDateTimeSelectedListener,
+    private val title: String
 ) : Dialog(context) {
 
     private lateinit var utils: DatePickerUtils
@@ -51,6 +52,8 @@ class DialogDateTimePicker(
 
         utils = DatePickerUtils(startDate, endDate)
 
+        dialogBinding.title.text = title
+
         val dateAdapter = DateAdapter(utils.getAllDates())
         val hourAdapter = HourAdapter(utils.addEmptyValue(utils.getHours(false)))
         val meridiemAdapter = MeridiemAdapter(utils.addEmptyValueInString(utils.getMeridiem()))
@@ -71,7 +74,9 @@ class DialogDateTimePicker(
 
         val hourSnapListener = object : CustomSnapHelper.SnapListener {
             override fun onViewSnapped(position: Int) {
+                println("hour snapped position $position")
                 utils.currentSelectedHour = hourAdapter.hour[position]
+                println("current selected hour ${utils.currentSelectedHour}")
                 utils.setSelectedHour(
                     getFormattedHour(
                         utils.isPmSelectedUnvalidated,

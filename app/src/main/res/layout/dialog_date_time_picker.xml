@@ -12,7 +12,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -35,7 +35,7 @@
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toEndOf="@+id/submitBtn"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/title" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/hourRv"
@@ -46,7 +46,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/minuteRv"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/dateRv"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/title" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/minuteRv"
@@ -57,7 +57,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/meridiemRv"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/hourRv"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/title" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/meridiemRv"
@@ -68,7 +68,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/minuteRv"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/title" />
 
             <View
                 android:layout_width="0dp"

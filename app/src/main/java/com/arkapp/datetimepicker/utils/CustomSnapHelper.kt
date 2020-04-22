@@ -1,5 +1,6 @@
 package com.arkapp.datetimepicker.utils
 
+import android.graphics.Typeface
 import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearSnapHelper
@@ -40,11 +41,11 @@ class CustomSnapHelper(
 
     private fun setFont(newPosition: Int) {
         if (lastSelectedView != null)
-        //Utility.setTypefaceMontserratMedium(rv.context, lastSelectedView)
+            lastSelectedView?.typeface = Typeface.DEFAULT
 
-            lastSelectedView =
-                (rv.findViewHolderForAdapterPosition(newPosition) as DateViewHolder).binding.tv
-        //Utility.setTypefaceMontserratBold(rv.context, lastSelectedView)
+        lastSelectedView =
+            (rv.findViewHolderForAdapterPosition(newPosition) as DateViewHolder).binding.tv
+        lastSelectedView?.typeface = Typeface.DEFAULT_BOLD
     }
 
 
