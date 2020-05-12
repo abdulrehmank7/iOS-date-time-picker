@@ -150,6 +150,14 @@ class DatePickerUtils(private val startDate: Calendar, private val endDate: Cale
         smoothScrollToTop(rv, getInitMeridiemIndex(), scrollSpeed)
     }
 
+    fun setMinimumHour(rv: RecyclerView) {
+        smoothScrollToTop(rv, 1, SLOW_SPEED)
+    }
+
+    fun setMinimumMinutes(rv: RecyclerView) {
+        smoothScrollToTop(rv, 1, SLOW_SPEED)
+    }
+
 
     fun isValidDate(): Boolean {
         println("${startDate.time} START_DATE")

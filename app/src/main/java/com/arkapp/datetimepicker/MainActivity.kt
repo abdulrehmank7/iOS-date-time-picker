@@ -15,14 +15,14 @@ class MainActivity : AppCompatActivity() {
 
         showDateTimePicker.setOnClickListener {
 
-            val startDate: Calendar = Calendar.getInstance().also {
+            val startDate: Calendar = Calendar.getInstance()/*.also {
                 it.set(Calendar.DAY_OF_MONTH, 21)
                 it.set(Calendar.HOUR_OF_DAY, 13)
                 it.set(Calendar.MINUTE, 0)
-            }
+            }*/
             val dateTimeSelectedListener = object : OnDateTimeSelectedListener {
                 override fun onDateTimeSelected(selectedDateTime: Calendar) {
-                    println("Selected date $selectedDateTime")
+                    println("Selected date ${selectedDateTime.time}")
                 }
             }
 

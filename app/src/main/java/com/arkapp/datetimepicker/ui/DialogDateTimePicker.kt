@@ -75,22 +75,28 @@ class DialogDateTimePicker(
         val hourSnapListener = object : CustomSnapHelper.SnapListener {
             override fun onViewSnapped(position: Int) {
                 println("hour snapped position $position")
-                utils.currentSelectedHour = hourAdapter.hour[position]
-                println("current selected hour ${utils.currentSelectedHour}")
-                utils.setSelectedHour(
-                    getFormattedHour(
-                        utils.isPmSelectedUnvalidated,
-                        hourAdapter.hour[position]
+                if (position >= 3) {
+                    utils.currentSelectedHour = hourAdapter.hour[position]
+                    println("current selected hour ${utils.currentSelectedHour}")
+                    utils.setSelectedHour(
+                        getFormattedHour(
+                            utils.isPmSelectedUnvalidated,
+                            hourAdapter.hour[position]
+                        )
                     )
-                )
-                validateDateTime()
+                    validateDateTime()
+                } else
+                    utils.setMinimumHour(dialogBinding.hourRv)
             }
         }
 
         val minuteSnapListener = object : CustomSnapHelper.SnapListener {
             override fun onViewSnapped(position: Int) {
-                utils.setSelectedMinute(minuteAdapter.minute[position])
-                validateDateTime()
+                if (position >= 3) {
+                    utils.setSelectedMinute(minuteAdapter.minute[position])
+                    validateDateTime()
+                } else
+                    utils.setMinimumMinutes(dialogBinding.minuteRv)
             }
         }
 
