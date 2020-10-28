@@ -7,7 +7,6 @@
 Add IOS like date time picker in your app. Get rid android date and time picker with single Widget to receive both date and time.
 
 
-
 <img src="https://github.com/blessedCode07/IOS-Date-Time-Picker/blob/master/lib_gif.gif" width="40%" height="40%"> 
 
 
@@ -21,8 +20,7 @@ Add IOS like date time picker in your app. Get rid android date and time picker 
 
 dependencies {
 
-    implementation 'com.github.blessedCode07:IOS-Date-Time-Picker:v1.01'
-
+    implementation 'com.github.blessedCode07:iOS-date-time-picker:v1.01'
 }
 
 ```
@@ -55,18 +53,12 @@ We can use `IOS-Date-Time-Picker` without any customized attributes.<br>
 
 val startDate: Calendar = Calendar.getInstance()
 
-
-
 val dateTimeSelectedListener = object :
 
                 OnDateTimeSelectedListener {
-
                 override fun onDateTimeSelected(selectedDateTime: Calendar) {
-
                     //This is the calendar reference of selected date and time. 
-
                     //We can format the date time as we need here.
-
                     println("Selected date ${selectedDateTime.time}")
 
                 }
@@ -78,13 +70,9 @@ val dateTimeSelectedListener = object :
  val dateTimePickerDialog = com.arkapp.iosdatettimepicker.ui.DialogDateTimePicker(
 
                 this, //context
-
                 startDate, //start date of calendar
-
                 12, //No. of future months to shown in calendar 
-
                 dateTimeSelectedListener,
-
                 "Select date and time") //Dialog title
 
                 
@@ -105,35 +93,23 @@ dateTimePickerDialog.show()
 
 dateTimePickerDialog.setTitleTextColor(android.R.color.black)
 
-
-
 dateTimePickerDialog.setDividerBgColor(android.R.color.black)
 
 
-
 dateTimePickerDialog.setCancelBtnColor(R.color.colorAccent)
-
 dateTimePickerDialog.setCancelBtnTextColor(R.color.colorPrimaryDark)
 
 
-
 dateTimePickerDialog.setSubmitBtnColor(R.color.colorAccent)
-
 dateTimePickerDialog.setSubmitBtnTextColor(R.color.colorPrimaryDark)
 
 
-
 dateTimePickerDialog.setCancelBtnText("Dismiss")
-
 dateTimePickerDialog.setSubmitBtnText("OK")
 
 
-
 //Call dateTimePickerDialog.show() after all the customization is set on dialog.
-
 //So dateTimePickerDialog.show() will be called last.
-
-
 
 ```
 
