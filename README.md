@@ -11,7 +11,7 @@ Add IOS like date time picker in your app. Get rid android date and time picker 
 #### build.gradle
 ```gradle
 dependencies {
-    implementation "com.github.blessedCode07:IOS-Date-Time-Picker:v1.00"
+    implementation 'com.github.blessedCode07:IOS-Date-Time-Picker:v1.01'
 }
 ```
 ### Add it in your root build.gradle at the end of repositories:
