@@ -6,6 +6,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Window
+import androidx.annotation.Keep
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.arkapp.iosdatettimepicker.R
@@ -21,6 +22,7 @@ import java.util.*
 /**
  * Created by Abdul Rehman on 5/16/2019.
  */
+@Keep
 class DialogDateTimePicker(
     context: Context,
     private val startDate: Calendar,
