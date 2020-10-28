@@ -13,7 +13,7 @@ Add IOS like date time picker in your app. Get rid android date and time picker 
 
 dependencies {
 
-    implementation 'com.github.blessedCode07:iOS-date-time-picker:v1.01'
+    implementation 'com.github.blessedCode07:iOS-date-time-picker:1.01'
 }
 
 ```
