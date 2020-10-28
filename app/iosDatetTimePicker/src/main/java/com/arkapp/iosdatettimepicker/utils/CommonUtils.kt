@@ -2,7 +2,6 @@ package com.arkapp.iosdatettimepicker.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.Resources
 import android.util.DisplayMetrics
 import android.view.Window
 import android.view.WindowManager
@@ -17,12 +16,21 @@ import java.util.*
  * Contact email - abdulrehman0796@gmail.com
  */
 
+const val SLOW_SPEED = 100F
+const val FAST_SPEED = 25F
+
 fun Window.setTransparentEdges() {
     decorView.setBackgroundResource(android.R.color.transparent)
 }
 
 fun Window.setFullWidth() {
     setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
+}
+
+@SuppressLint("SimpleDateFormat")
+fun getDateFromCalendar(calendar: Calendar): String {
+    val sdf = SimpleDateFormat("EEE dd MMM", Locale.ENGLISH)
+    return sdf.format(calendar.time)
 }
 
 fun RecyclerView.initVerticalAdapter(
@@ -35,15 +43,6 @@ fun RecyclerView.initVerticalAdapter(
     this.layoutManager = llm
     adapter.setHasStableIds(true)
     this.adapter = adapter
-}
-
-const val SLOW_SPEED = 100F
-const val FAST_SPEED = 25F
-
-@SuppressLint("SimpleDateFormat")
-fun getDateFromCalendar(calendar: Calendar): String {
-    val sdf = SimpleDateFormat("EEE dd MMM")
-    return sdf.format(calendar.time)
 }
 
 fun getZeroPrefix(minute: Int): String {
@@ -89,20 +88,4 @@ fun smoothScrollToTop(rv: RecyclerView, position: Int, speed: Float) {
     val smoothScroller = rv.context.getSmoothScroll(speed)
     smoothScroller.targetPosition = position
     layoutManager.startSmoothScroll(smoothScroller)
-}
-
-fun dpToPx(dp: Int): Int {
-    return (dp * Resources.getSystem().displayMetrics.density).toInt()
-}
-
-fun pxToDp(px: Int): Int {
-    return (px / Resources.getSystem().displayMetrics.density).toInt()
-}
-
-fun spToPx(dp: Int): Int {
-    return (dp * Resources.getSystem().displayMetrics.scaledDensity).toInt()
-}
-
-fun pxToSp(px: Int): Int {
-    return (px / Resources.getSystem().displayMetrics.scaledDensity).toInt()
 }

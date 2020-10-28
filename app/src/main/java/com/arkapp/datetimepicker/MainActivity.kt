@@ -1,6 +1,7 @@
 package com.arkapp.datetimepicker
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.arkapp.iosdatettimepicker.utils.OnDateTimeSelectedListener
 import kotlinx.android.synthetic.main.activity_main.*
@@ -22,7 +23,11 @@ class MainActivity : AppCompatActivity() {
             val dateTimeSelectedListener = object :
                 OnDateTimeSelectedListener {
                 override fun onDateTimeSelected(selectedDateTime: Calendar) {
-                    println("Selected date ${selectedDateTime.time}")
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Selected date ${selectedDateTime.time}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
@@ -33,6 +38,19 @@ class MainActivity : AppCompatActivity() {
                 dateTimeSelectedListener,
                 "Select date and time"
             )
+
+            dialog.setTitleTextColor(android.R.color.black)
+
+            dialog.setDividerBgColor(android.R.color.black)
+
+            dialog.setCancelBtnColor(R.color.colorAccent)
+            dialog.setCancelBtnTextColor(R.color.colorPrimaryDark)
+
+            dialog.setSubmitBtnColor(R.color.colorAccent)
+            dialog.setSubmitBtnTextColor(R.color.colorPrimaryDark)
+
+            dialog.setCancelBtnText("Dismiss")
+            dialog.setSubmitBtnText("OK")
 
             dialog.show()
         }

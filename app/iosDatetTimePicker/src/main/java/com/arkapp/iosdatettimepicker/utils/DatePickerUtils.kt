@@ -13,8 +13,6 @@ import kotlin.collections.ArrayList
 const val INVISIBLE_VIEWS = 2
 const val AM = "AM"
 const val PM = "PM"
-const val UNSELECTED_TEXT_SIZE = 14
-const val SELECTED_TEXT_SIZE = 16
 
 class DatePickerUtils(private val startDate: Calendar, private val endDate: Calendar) {
 
@@ -159,7 +157,6 @@ class DatePickerUtils(private val startDate: Calendar, private val endDate: Cale
     fun setMinimumMinutes(rv: RecyclerView) {
         smoothScrollToTop(rv, 1, SLOW_SPEED)
     }
-
 
     fun isValidDate(): Boolean {
         println("${startDate.time} START_DATE")

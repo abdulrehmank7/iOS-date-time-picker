@@ -6,6 +6,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Window
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.arkapp.iosdatettimepicker.R
 import com.arkapp.iosdatettimepicker.adapter.DateAdapter
@@ -30,6 +31,20 @@ class DialogDateTimePicker(
 
     private lateinit var utils: DatePickerUtils
     private lateinit var dialogBinding: DialogDateTimePickerBinding
+
+    private var titleTextColor = R.color.colorPrimaryDark
+
+    private var centerViewBgColor = R.color.colorPrimaryDark
+
+    private var cancelTextColor = android.R.color.white
+    private var cancelBgColor = R.color.colorPrimaryDark
+
+    private var submitTextColor = android.R.color.white
+    private var submitBgColor = R.color.colorPrimaryDark
+
+    private var cancelText = context.getString(R.string.cancel)
+    private var submitText = context.getString(R.string.submit)
+
     private var endDate: Calendar = Calendar.getInstance().also {
         it.timeInMillis = startDate.timeInMillis
         it.add(Calendar.MONTH, maxMonthToDisplay)
@@ -54,6 +69,23 @@ class DialogDateTimePicker(
         utils = DatePickerUtils(startDate, endDate)
 
         dialogBinding.title.text = title
+
+        dialogBinding.title.setTextColor(ContextCompat.getColor(context, titleTextColor))
+        dialogBinding.submitBtn.setTextColor(ContextCompat.getColor(context, submitTextColor))
+        dialogBinding.cancelBtn.setTextColor(ContextCompat.getColor(context, cancelTextColor))
+
+        dialogBinding.viewCenter.setBackgroundColor(
+            ContextCompat.getColor(
+                context,
+                centerViewBgColor
+            )
+        )
+
+        dialogBinding.submitBtn.setBackgroundColor(ContextCompat.getColor(context, submitBgColor))
+        dialogBinding.cancelBtn.setBackgroundColor(ContextCompat.getColor(context, cancelBgColor))
+
+        dialogBinding.submitBtn.text = submitText
+        dialogBinding.cancelBtn.text = cancelText
 
         val dateAdapter = DateAdapter(utils.getAllDates())
         val hourAdapter = HourAdapter(
@@ -155,6 +187,38 @@ class DialogDateTimePicker(
             else
                 initDates(SLOW_SPEED)
         }
+    }
+
+    fun setTitleTextColor(color: Int) {
+        titleTextColor = color
+    }
+
+    fun setDividerBgColor(color: Int) {
+        centerViewBgColor = color
+    }
+
+    fun setSubmitBtnColor(color: Int) {
+        submitBgColor = color
+    }
+
+    fun setSubmitBtnTextColor(color: Int) {
+        submitTextColor = color
+    }
+
+    fun setCancelBtnColor(color: Int) {
+        cancelBgColor = color
+    }
+
+    fun setCancelBtnTextColor(color: Int) {
+        cancelTextColor = color
+    }
+
+    fun setSubmitBtnText(submitTxt: String) {
+        submitText = submitTxt
+    }
+
+    fun setCancelBtnText(cancelTxt: String) {
+        cancelText = cancelTxt
     }
 
 }
