@@ -1,18 +1,11 @@
 # IOS-Date-Time-Picker
-
 [![](https://jitpack.io/v/blessedCode07/IOS-Date-Time-Picker.svg)](https://jitpack.io/#blessedCode07/IOS-Date-Time-Picker)
-
 <br>
-
 Add IOS like date time picker in your app. Get rid android date and time picker with single Widget to receive both date and time.
-
 
 <img src="https://github.com/blessedCode07/IOS-Date-Time-Picker/blob/master/lib_gif.gif" width="40%" height="40%"> 
 
-
 ## Including in your project
-
-
 
 #### build.gradle
 
@@ -32,13 +25,9 @@ dependencies {
 allprojects {
 
   repositories {
-
     ...
-
     maven { url 'https://jitpack.io' }
-
     }
-
 }
 
 ```
@@ -46,7 +35,6 @@ allprojects {
 ### Use IOS-Date-Time-Picker in your project
 
 We can use `IOS-Date-Time-Picker` without any customized attributes.<br>
-
 
 
 ```gradle
