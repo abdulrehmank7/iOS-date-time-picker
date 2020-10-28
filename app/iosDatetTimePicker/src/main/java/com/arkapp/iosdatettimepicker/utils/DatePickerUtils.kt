@@ -1,4 +1,4 @@
-package com.arkapp.datetimepicker.utils
+package com.arkapp.iosdatettimepicker.utils
 
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
@@ -13,6 +13,8 @@ import kotlin.collections.ArrayList
 const val INVISIBLE_VIEWS = 2
 const val AM = "AM"
 const val PM = "PM"
+const val UNSELECTED_TEXT_SIZE = 14
+const val SELECTED_TEXT_SIZE = 16
 
 class DatePickerUtils(private val startDate: Calendar, private val endDate: Calendar) {
 

@@ -1,7 +1,8 @@
-package com.arkapp.datetimepicker.utils
+package com.arkapp.iosdatettimepicker.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.Resources
 import android.util.DisplayMetrics
 import android.view.Window
 import android.view.WindowManager
@@ -88,4 +89,20 @@ fun smoothScrollToTop(rv: RecyclerView, position: Int, speed: Float) {
     val smoothScroller = rv.context.getSmoothScroll(speed)
     smoothScroller.targetPosition = position
     layoutManager.startSmoothScroll(smoothScroller)
+}
+
+fun dpToPx(dp: Int): Int {
+    return (dp * Resources.getSystem().displayMetrics.density).toInt()
+}
+
+fun pxToDp(px: Int): Int {
+    return (px / Resources.getSystem().displayMetrics.density).toInt()
+}
+
+fun spToPx(dp: Int): Int {
+    return (dp * Resources.getSystem().displayMetrics.scaledDensity).toInt()
+}
+
+fun pxToSp(px: Int): Int {
+    return (px / Resources.getSystem().displayMetrics.scaledDensity).toInt()
 }

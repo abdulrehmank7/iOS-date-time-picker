@@ -2,8 +2,7 @@ package com.arkapp.datetimepicker
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.arkapp.datetimepicker.ui.DialogDateTimePicker
-import com.arkapp.datetimepicker.utils.OnDateTimeSelectedListener
+import com.arkapp.iosdatettimepicker.utils.OnDateTimeSelectedListener
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -20,13 +19,14 @@ class MainActivity : AppCompatActivity() {
                 it.set(Calendar.HOUR_OF_DAY, 13)
                 it.set(Calendar.MINUTE, 0)
             }*/
-            val dateTimeSelectedListener = object : OnDateTimeSelectedListener {
+            val dateTimeSelectedListener = object :
+                OnDateTimeSelectedListener {
                 override fun onDateTimeSelected(selectedDateTime: Calendar) {
                     println("Selected date ${selectedDateTime.time}")
                 }
             }
 
-            val dialog = DialogDateTimePicker(
+            val dialog = com.arkapp.iosdatettimepicker.ui.DialogDateTimePicker(
                 this,
                 startDate,
                 12,

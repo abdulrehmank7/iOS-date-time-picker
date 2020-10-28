@@ -1,2 +1,3 @@
+include ':app:iosDatetTimePicker'
 rootProject.name='DateTimePicker'
 include ':app'

@@ -1,4 +1,4 @@
-package com.arkapp.datetimepicker.utils
+package com.arkapp.iosdatettimepicker.utils
 
 import android.graphics.Typeface
 import android.view.View
@@ -40,8 +40,9 @@ class CustomSnapHelper(
     }
 
     private fun setFont(newPosition: Int) {
-        if (lastSelectedView != null)
+        if (lastSelectedView != null) {
             lastSelectedView?.typeface = Typeface.DEFAULT
+        }
 
         lastSelectedView =
             (rv.findViewHolderForAdapterPosition(newPosition) as DateViewHolder).binding.tv

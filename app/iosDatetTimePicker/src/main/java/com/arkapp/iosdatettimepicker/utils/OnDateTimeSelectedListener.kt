@@ -1,4 +1,4 @@
-package com.arkapp.datetimepicker.utils
+package com.arkapp.iosdatettimepicker.utils
 
 import java.util.*
 

@@ -1,4 +1,4 @@
-package com.arkapp.datetimepicker.ui
+package com.arkapp.iosdatettimepicker.ui
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -7,12 +7,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Window
 import androidx.recyclerview.widget.RecyclerView
-import com.arkapp.datetimepicker.adapter.DateAdapter
-import com.arkapp.datetimepicker.adapter.HourAdapter
-import com.arkapp.datetimepicker.adapter.MeridiemAdapter
-import com.arkapp.datetimepicker.adapter.MinuteAdapter
-import com.arkapp.datetimepicker.databinding.DialogDateTimePickerBinding
-import com.arkapp.datetimepicker.utils.*
+import com.arkapp.iosdatettimepicker.R
+import com.arkapp.iosdatettimepicker.adapter.DateAdapter
+import com.arkapp.iosdatettimepicker.adapter.HourAdapter
+import com.arkapp.iosdatettimepicker.adapter.MeridiemAdapter
+import com.arkapp.iosdatettimepicker.adapter.MinuteAdapter
+import com.arkapp.iosdatettimepicker.databinding.DialogDateTimePickerBinding
+import com.arkapp.iosdatettimepicker.utils.*
 import java.util.*
 
 
@@ -25,7 +26,7 @@ class DialogDateTimePicker(
     private val maxMonthToDisplay: Int,
     private val dateTimeSelectedListener: OnDateTimeSelectedListener,
     private val title: String
-) : Dialog(context) {
+) : Dialog(context, R.style.Theme_Custom_Dialog) {
 
     private lateinit var utils: DatePickerUtils
     private lateinit var dialogBinding: DialogDateTimePickerBinding
@@ -55,9 +56,15 @@ class DialogDateTimePicker(
         dialogBinding.title.text = title
 
         val dateAdapter = DateAdapter(utils.getAllDates())
-        val hourAdapter = HourAdapter(utils.addEmptyValue(utils.getHours(false)))
-        val meridiemAdapter = MeridiemAdapter(utils.addEmptyValueInString(utils.getMeridiem()))
-        val minuteAdapter = MinuteAdapter(utils.addEmptyValue(utils.getMinutes()))
+        val hourAdapter = HourAdapter(
+            utils.addEmptyValue(
+                utils.getHours(false)
+            )
+        )
+        val meridiemAdapter =
+            MeridiemAdapter(utils.addEmptyValueInString(utils.getMeridiem()))
+        val minuteAdapter =
+            MinuteAdapter(utils.addEmptyValue(utils.getMinutes()))
 
         dialogBinding.dateRv.initVerticalAdapter(dateAdapter, true)
         dialogBinding.hourRv.initVerticalAdapter(hourAdapter, true)
