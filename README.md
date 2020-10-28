@@ -11,9 +11,6 @@ Add IOS like date time picker in your app. Get rid android date and time picker 
 <img src="https://github.com/blessedCode07/IOS-Date-Time-Picker/blob/master/lib_gif.gif" width="40%" height="40%"> 
 
 
-
-<img src="https://github.com/blessedCode07/IOS-Date-Time-Picker/blob/master/1.jpg" width="40%" height="40%">        
-
 ## Including in your project
 
 
