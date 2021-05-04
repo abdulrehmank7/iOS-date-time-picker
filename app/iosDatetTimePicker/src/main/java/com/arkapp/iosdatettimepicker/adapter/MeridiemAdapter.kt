@@ -6,17 +6,23 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.arkapp.iosdatettimepicker.R
 import com.arkapp.iosdatettimepicker.utils.DateViewHolder
+import com.arkapp.iosdatettimepicker.utils.dpToPx
+import com.arkapp.iosdatettimepicker.utils.spToPx
 import java.util.*
 
 /**
  * Created by Abdul Rehman on 12-03-2020.
  * Contact email - abdulrehman0796@gmail.com
  */
-class MeridiemAdapter(val meridiem: ArrayList<String>) :
+class MeridiemAdapter(
+    val meridiem: ArrayList<String>,
+    private val fontSize: Int,
+    private val dividerHeight: Int
+) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return DateViewHolder(
+        val view = DateViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
                 R.layout.recycler_date_seletion,
@@ -24,6 +30,10 @@ class MeridiemAdapter(val meridiem: ArrayList<String>) :
                 false
             )
         )
+        view.binding.parent.layoutParams.height =
+            dividerHeight.dpToPx(view.binding.tv.context).toInt()
+        view.binding.tv.textSize = fontSize.spToPx(view.binding.tv.context)
+        return view
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

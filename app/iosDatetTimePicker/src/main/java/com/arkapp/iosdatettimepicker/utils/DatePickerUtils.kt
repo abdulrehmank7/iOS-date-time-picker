@@ -97,8 +97,9 @@ class DatePickerUtils(private val startDate: Calendar, private val endDate: Cale
         selectedDateTime.timeInMillis = selectedDateUnvalidated.timeInMillis
     }
 
-    fun setSelectedDate(dayOfYear: Int) {
+    fun setSelectedDate(dayOfYear: Int, year: Int) {
         selectedDateUnvalidated.set(Calendar.DAY_OF_YEAR, dayOfYear)
+        selectedDateUnvalidated.set(Calendar.YEAR, year)
     }
 
     fun setSelectedHour(hour: Int) {

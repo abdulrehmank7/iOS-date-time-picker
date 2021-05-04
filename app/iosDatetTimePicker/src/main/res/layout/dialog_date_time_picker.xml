@@ -27,23 +27,26 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/dateRv"
-                android:layout_width="98dp"
+                android:layout_width="0dp"
                 android:layout_height="190dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:overScrollMode="never"
                 app:layout_constraintEnd_toStartOf="@+id/hourRv"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintHorizontal_weight="3"
                 app:layout_constraintStart_toEndOf="@+id/submitBtn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/hourRv"
-                android:layout_width="58dp"
+                android:layout_width="0dp"
                 android:layout_height="190dp"
                 android:layout_marginTop="8dp"
                 android:overScrollMode="never"
+                app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintEnd_toStartOf="@+id/minuteRv"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/dateRv"
@@ -51,10 +54,11 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/minuteRv"
-                android:layout_width="58dp"
+                android:layout_width="0dp"
                 android:layout_height="190dp"
                 android:layout_marginTop="8dp"
                 android:overScrollMode="never"
+                app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintEnd_toStartOf="@+id/meridiemRv"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/hourRv"
@@ -62,12 +66,14 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/meridiemRv"
-                android:layout_width="58dp"
+                android:layout_width="0dp"
                 android:layout_height="190dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:overScrollMode="never"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toEndOf="@+id/minuteRv"
                 app:layout_constraintTop_toBottomOf="@+id/title" />
 

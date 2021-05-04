@@ -3,6 +3,7 @@ package com.arkapp.iosdatettimepicker.utils
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.DisplayMetrics
+import android.util.TypedValue
 import android.view.Window
 import android.view.WindowManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 /**
  * Created by Abdul Rehman on 01-04-2020.
@@ -88,4 +90,20 @@ fun smoothScrollToTop(rv: RecyclerView, position: Int, speed: Float) {
     val smoothScroller = rv.context.getSmoothScroll(speed)
     smoothScroller.targetPosition = position
     layoutManager.startSmoothScroll(smoothScroller)
+}
+
+fun Int.spToPx(context: Context): Float {
+    return TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_PX,
+        this.toFloat(),
+        context.resources.displayMetrics
+    )
+}
+
+fun Int.dpToPx(context: Context): Float {
+    return TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        this.toFloat(),
+        context.resources.displayMetrics
+    )
 }

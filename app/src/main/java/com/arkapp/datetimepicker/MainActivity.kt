@@ -51,6 +51,8 @@ class MainActivity : AppCompatActivity() {
 
             dialog.setCancelBtnText("Dismiss")
             dialog.setSubmitBtnText("OK")
+            dialog.setFontSize(18)
+            dialog.setCenterDividerHeight(48)
 
             dialog.show()
         }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.Window
 import androidx.annotation.Keep
@@ -47,6 +48,10 @@ class DialogDateTimePicker(
     private var cancelText = context.getString(R.string.cancel)
     private var submitText = context.getString(R.string.submit)
 
+    private var fontSize: Int = 14
+
+    private var dividerHeight: Int = 38
+
     private var endDate: Calendar = Calendar.getInstance().also {
         it.timeInMillis = startDate.timeInMillis
         it.add(Calendar.MONTH, maxMonthToDisplay)
@@ -61,6 +66,8 @@ class DialogDateTimePicker(
         super.onCreate(savedInstanceState)
 
         dialogBinding = DialogDateTimePickerBinding.inflate(LayoutInflater.from(context))
+        window?.setGravity(Gravity.BOTTOM)
+
 
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(dialogBinding.root)
@@ -89,16 +96,28 @@ class DialogDateTimePicker(
         dialogBinding.submitBtn.text = submitText
         dialogBinding.cancelBtn.text = cancelText
 
-        val dateAdapter = DateAdapter(utils.getAllDates())
+        dialogBinding.viewCenter.layoutParams.height = dividerHeight.dpToPx(context).toInt()
+
+        val dateAdapter = DateAdapter(utils.getAllDates(), fontSize, dividerHeight)
         val hourAdapter = HourAdapter(
             utils.addEmptyValue(
                 utils.getHours(false)
-            )
+            ),
+            fontSize,
+            dividerHeight
         )
         val meridiemAdapter =
-            MeridiemAdapter(utils.addEmptyValueInString(utils.getMeridiem()))
+            MeridiemAdapter(
+                utils.addEmptyValueInString(utils.getMeridiem()),
+                fontSize,
+                dividerHeight
+            )
         val minuteAdapter =
-            MinuteAdapter(utils.addEmptyValue(utils.getMinutes()))
+            MinuteAdapter(
+                utils.addEmptyValue(utils.getMinutes()),
+                fontSize,
+                dividerHeight
+            )
 
         dialogBinding.dateRv.initVerticalAdapter(dateAdapter, true)
         dialogBinding.hourRv.initVerticalAdapter(hourAdapter, true)
@@ -107,7 +126,10 @@ class DialogDateTimePicker(
 
         val dateSnapListener = object : CustomSnapHelper.SnapListener {
             override fun onViewSnapped(position: Int) {
-                utils.setSelectedDate(dateAdapter.dates[position].get(Calendar.DAY_OF_YEAR))
+                utils.setSelectedDate(
+                    dateAdapter.dates[position].get(Calendar.DAY_OF_YEAR),
+                    dateAdapter.dates[position].get(Calendar.YEAR)
+                )
 
                 validateDateTime()
             }
@@ -221,6 +243,14 @@ class DialogDateTimePicker(
 
     fun setCancelBtnText(cancelTxt: String) {
         cancelText = cancelTxt
+    }
+
+    fun setFontSize(sizeInSp: Int) {
+        fontSize = sizeInSp
+    }
+
+    fun setCenterDividerHeight(sizeInDp: Int) {
+        dividerHeight = sizeInDp
     }
 
 }
