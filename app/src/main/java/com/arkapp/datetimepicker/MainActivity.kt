@@ -15,11 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         showDateTimePicker.setOnClickListener {
 
-            val startDate: Calendar = Calendar.getInstance()/*.also {
-                it.set(Calendar.DAY_OF_MONTH, 21)
-                it.set(Calendar.HOUR_OF_DAY, 13)
-                it.set(Calendar.MINUTE, 0)
-            }*/
+            val startDate: Calendar = Calendar.getInstance()
             val dateTimeSelectedListener = object :
                 OnDateTimeSelectedListener {
                 override fun onDateTimeSelected(selectedDateTime: Calendar) {
@@ -39,18 +35,18 @@ class MainActivity : AppCompatActivity() {
                 "Select date and time"
             )
 
-            dialog.setTitleTextColor(android.R.color.black)
+            dialog.setTitleTextColor(R.color.colorPrimaryDark)
 
-            dialog.setDividerBgColor(android.R.color.black)
+            dialog.setDividerBgColor(R.color.colorAccent)
 
-            dialog.setCancelBtnColor(R.color.colorAccent)
-            dialog.setCancelBtnTextColor(R.color.colorPrimaryDark)
+            dialog.setCancelBtnColor(R.color.colorPrimaryDark)
+            dialog.setCancelBtnTextColor(R.color.colorAccent)
 
-            dialog.setSubmitBtnColor(R.color.colorAccent)
-            dialog.setSubmitBtnTextColor(R.color.colorPrimaryDark)
+            dialog.setSubmitBtnColor(R.color.colorPrimaryDark)
+            dialog.setSubmitBtnTextColor(R.color.colorAccent)
 
-            dialog.setCancelBtnText("Dismiss")
-            dialog.setSubmitBtnText("OK")
+            dialog.setCancelBtnText("Cancel")
+            dialog.setSubmitBtnText("Submit")
             dialog.setFontSize(18)
             dialog.setCenterDividerHeight(48)
 
