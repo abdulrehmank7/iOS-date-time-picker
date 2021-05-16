@@ -3,6 +3,7 @@
 <br>
 Add IOS like date time picker in your app. Get rid android date and time picker with single Widget to receive both date and time.
 
+<img src="https://github.com/abdulrehmank7/iOS-date-time-picker/blob/master/Web%201920%20%E2%80%93%209.png"> 
 <img src="https://github.com/abdulrehmank7/IOS-Date-Time-Picker/blob/master/preview.gif" width="40%" height="40%"> 
 
 ## Including in your project
@@ -72,6 +73,7 @@ dateTimePickerDialog.show()
 
 
 ```
+<img src="https://github.com/abdulrehmank7/iOS-date-time-picker/blob/master/Web%201920%20%E2%80%93%207.png">
 
 ### Dialog Customizations
 
